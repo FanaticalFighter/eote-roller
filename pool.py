@@ -16,7 +16,7 @@ class DicePool:
             raise TypeError('dice argument {} to DicePool object should be a list'.format(str(dice)))
 
         for d in dice:
-            if type(d) is not Dice:
+            if not isinstance(d, Dice):
                 raise TypeError('Element {} of dice argument to DicePool object should be a Dice'.format(str(d)))
 
         self.dice = dice
