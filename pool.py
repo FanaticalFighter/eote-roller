@@ -27,7 +27,7 @@ class DicePool:
     def __str__():
         return str(self.dice)
 
-    def roll():
+    def roll(self):
         """Returns a list of rolls of all the dice in the pool"""
-        result = [die.roll() for die in dice]
+        result = [die.roll() for die in self.dice]
         return result
