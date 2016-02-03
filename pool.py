@@ -1,5 +1,9 @@
 from dice import *
 
+class ContainerEmptyError(Exception):
+    """Raised whenever an operation is attempted on an empty container object which should only be attempted when the container is not empty"""
+    pass
+
 class DicePool:
     """
     A pool of dice. That can be rolled.
@@ -46,5 +50,9 @@ class DicePool:
 
     def roll(self):
         """Returns a list of rolls of all the dice in the pool"""
+
+        if len(self.dice) <= 0:
+            raise ContainerEmptyError('DicePool {} is empty, and can\'t be rolled'.format(str(self)))
+
         result = [die.roll() for die in self.dice]
         return result
