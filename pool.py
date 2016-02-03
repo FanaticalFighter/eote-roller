@@ -27,6 +27,13 @@ class DicePool:
     def __str__():
         return str(self.dice)
 
+    def add_dice(self, dice):
+        """Adds the dice to the pool. dice must be a Dice object"""
+
+        if not isinstance(dice, Dice):
+            raise TypeError('dice argument {} to add_dice() must be a Dice'.format(str(dice)))
+
+        self.dice.append(dice)
     def roll(self):
         """Returns a list of rolls of all the dice in the pool"""
         result = [die.roll() for die in self.dice]
