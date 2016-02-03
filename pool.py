@@ -21,10 +21,10 @@ class DicePool:
 
         self.dice = dice
 
-    def __repr__():
+    def __repr__(self):
         return repr(self.dice)
 
-    def __str__():
+    def __str__(self):
         return str(self.dice)
 
     def add_dice(self, dice):
