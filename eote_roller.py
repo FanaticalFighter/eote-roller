@@ -16,6 +16,28 @@ def get_all_eote_dice():
 
     return ddict
 
+def pprint_roll(roll):
+    """Takes the result of a DicePool roll and prettily prints it"""
+    result_count = {
+        'Success': 0,
+        'Failure': 0,
+        'Advantage': 0,
+        'Threat': 0,
+        'Triumph': 0,
+        'Despair': 0
+    }
+
+    for result in roll:
+        if type(result) is list:
+            for item in result:
+                result_count[item] += 1
+        elif result in result_count:
+            result_count[result] += 1
+
+    for item in result_count:
+        if result_count[item] > 0:
+            print '%s: %d' % (item, result_count[item])
+
 def main():
     dice_dict = get_all_eote_dice()
 
@@ -35,6 +57,8 @@ def main():
 
         for i in range(int(num_dice)):
             dicePool.add_dice(dice_dict[dice_type_abbrev[dice_type]])
+
+    pprint_roll(dicePool.roll())
 
 if __name__ == '__main__':
     main()
