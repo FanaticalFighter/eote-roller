@@ -19,5 +19,22 @@ def get_all_eote_dice():
 def main():
     dice_dict = get_all_eote_dice()
 
+    dicePool = DicePool()
+
+    pool_str = sys.argv[1]
+    matches = re.findall('[0-9]+[a-z]+', pool_str)
+
+    dice_type_abbrev = {'b': 'Boost', 's': 'Setback', 'a': 'Ability', 'd': 'Difficulty', 'p': 'Proficiency', 'c': 'Challenge', 'f': 'Force'}
+
+    for match in matches:
+        num_dice = match[0]
+        dice_type = match[1]
+
+        if dice_type not in dice_type_abbrev:
+            raise KeyError('Dice type {} not in database'.format(dice_type))
+
+        for i in range(int(num_dice)):
+            dicePool.add_dice(dice_dict[dice_type_abbrev[dice_type]])
+
 if __name__ == '__main__':
     main()
