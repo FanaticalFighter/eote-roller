@@ -34,6 +34,16 @@ class DicePool:
             raise TypeError('dice argument {} to add_dice() must be a Dice'.format(str(dice)))
 
         self.dice.append(dice)
+
+    def rem_dice(self, dice):
+        """Removes one dice which is identical to the argument dice from the
+        Dice Pool"""
+
+        try:
+            self.dice.remove(dice)
+        except ValueError as e:
+            raise ValueError('dice {} is not in the DicePool, so can\'t be removed'.format(str(dice)))
+
     def roll(self):
         """Returns a list of rolls of all the dice in the pool"""
         result = [die.roll() for die in self.dice]
